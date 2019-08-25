@@ -6,10 +6,15 @@ td {
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   margin: 2em;
   font-size: 12px;
+  font-weight: 600;
 }
 
 th {
-  font-style: bold;
-  font-size: 14px;
-  color: #373fff;
+  font-size: 16px;
+  color: #B8519D;
+  font-weight: 900;
+}
+
+#grad {
+  background-image: linear-gradient(#B8819A,#FF7DB9)
 }
