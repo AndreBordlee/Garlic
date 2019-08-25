@@ -1,0 +1,69 @@
+1. sudo apt install hostapd bridge-utils
+   sudo systemctl stop hostapd
+
+2. sudo nano /etc/dhcpcd.conf
+     
+   at end of file:
+          
+          denyinterfaces wlan0
+          denyinterfaces eth0
+
+3. sudo brctl addbr br0
+   sudo brctl addif br0 eth0
+
+4. sudo nano /etc/network/interfaces
+
+   at end of file:
+          
+          allow-hotplug wlan0
+          iface br0 inet manual
+       
+          auto br0
+          iface br0 inet dhcp
+          bridge_ports eth0 wlan0
+
+5. sudo nano /etc/hostapd/hostapd.conf
+
+   within file:
+         
+          interface=wlan0
+          bridge=br0
+          ssid=Garlic
+          hw_mode=g
+          channel=7
+          wmm_enabled=0
+          macaddr_acl=0
+          auth_algs=1
+          ignore_broadcast_ssid=0
+          wpa=2
+          wpa_passphrase=Nerd2019
+          wpa_key_mgmt=WPA-PSK
+          wpa_pairwise=TKIP
+          rsn_pairwise=CCMP
+
+9. sudo nano /etc/default/hostapd
+
+          uncomment line 13
+
+          within line 13, provide path to previously created file (/etc/hostapd/hostapd.conf)
+          (should appear as DAEMON_CONF="/etc/hostapd/hostapd.conf")
+
+10. REBOOT
+
+    on startup, open terminal and enter:
+   
+          sudo systemctl stop dhcpcd
+          sudo systemctl unmask hostapd
+          sudo systemctl enable hostapd
+          sudo systemctl start hostapd
+
+11. sudo apt install ipfm
+    sudo nano /etc/ipfm.conf
+
+         find FILENAME ""
+         insert path in "" (in this case /home/pi/Desktop/ipfm)
+         uncomment DISABLED
+
+12. sudo ipfm       
+          
+   
