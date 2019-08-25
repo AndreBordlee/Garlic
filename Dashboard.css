@@ -1,0 +1,15 @@
+table, th, td {
+  border: 1px solid black;
+}
+
+td {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 2em;
+  font-size: 12px;
+}
+
+th {
+  font-style: bold;
+  font-size: 14px;
+  color: #373fff;
+}
